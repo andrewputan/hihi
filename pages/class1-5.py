@@ -1,13 +1,13 @@
 import streamlit as st
 
 for i in range(10):
-    print("hihi")
+    st.markdown("hihi")
 
 for i in range(10):
-    print(i)
+    st.markdown(i)
 
 for i in range(1, 10):
-    print(i)
+    st.markdown(i)
 
 for i in range(1, 10, 2):
-    print(i)
+    st.markdown(i)
