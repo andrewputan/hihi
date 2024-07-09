@@ -278,3 +278,120 @@ value 設定預設值。
 根據輸入的分數，使用 if-elif-else 條件判斷來顯示不同的等級和訊息。
  """
     )
+
+
+with st.expander("class1-5"):
+    st.markdown(
+        """
+# 程式技巧筆記
+
+## 使用的程式技巧
+
+### 1. import 語句
+
+import 語句用於引入外部模組或函式庫，以便在程式中使用其功能。
+
+```python
+import streamlit as st
+```
+
+這行程式碼引入了 streamlit 模組，並將其簡稱為 st，方便在程式中使用。
+
+### 1. for 迴圈
+
+for 迴圈用於重複執行一段程式碼，迴圈次數由 range 函式決定。
+
+```python
+
+  for i in range(10):
+      st.markdown("hihi")
+```
+
+這個迴圈會執行 10 次，每次都會使用 streamlit 的 markdown 方法輸出 "hihi"。
+
+### 1. range 函式
+
+range 函式生成一個數字序列，常用於控制迴圈的次數。
+
+```python
+  for i in range(10):
+      st.markdown(i)
+```
+
+這個迴圈會執行 10 次，每次迴圈變數 i 的值從 0 到 9，並且每次都會使用 streamlit 的 markdown 方法輸出 i 的值。
+
+### 1. range 函式的變體
+
+range 函式可以接受多個參數來控制序列的開始、結束和步長。
+
+```python
+  for i in range(1, 10):
+      st.markdown(i)
+```
+
+這個迴圈會執行 9 次，每次迴圈變數 i 的值從 1 到 9，並且每次都會使用 streamlit 的 markdown 方法輸出 i 的值。
+
+```python
+  for i in range(1, 10, 2):
+      st.markdown(i)
+```
+
+這個迴圈會執行 5 次，每次迴圈變數 i 的值從 1 開始，每次增加 2，直到小於 10，並且每次都會使用 streamlit 的 markdown 方法輸出 i 的值。
+
+### 1. streamlit 的 markdown 方法
+
+streamlit 的 markdown 方法用於在網頁上顯示 Markdown 格式的文字。
+
+```python
+  st.markdown("hihi")
+```
+
+這行程式碼會在網頁上顯示 "hihi"。
+
+```python
+  st.markdown(i)
+```
+
+這行程式碼會在網頁上顯示變數 i 的值。    
+"""
+    )
+with st.expander("class1-6"):
+    st.markdown(
+        """
+# Streamlit 程式技巧筆記
+
+### 引入模組
+
+import streamlit as st: 
+```
+
+引入 streamlit 模組，並將其名稱縮寫為 st，方便後續使用。
+
+```python
+number = int(
+    st.number_input("請輸入一個數字", step=1, max_value=9, min_value=1, value=1)
+)
+```
+
+st.number_input：這是一個 Streamlit 提供的函數，用於在網頁上顯示一個數字輸入框。
+"請輸入一個數字"：輸入框的提示文字。
+step=1：每次增加或減少的步長。
+max_value=9：輸入的最大值。
+min_value=1：輸入的最小值。
+value=1：預設值。
+int(...)：將輸入的數字轉換為整數型別。
+
+### 迴圈與輸出
+
+```python
+for i in range(1, number + 1):
+    st.markdown(str(i) * i)
+```
+
+- for i in range(1, number + 1)：使用 for 迴圈從 1 遍歷到 number。
+- range(1, number + 1)：生成從 1 到 number 的數字序列。
+- st.markdown(str(i) * i)：將數字 i 轉換為字串，並重複 i 次，然後使用 st.markdown 在網頁上顯示出來。
+- str(i) * i：將數字 i 轉換為字串並重複 i 次，例如 i=3 時，結果為 "333"。
+- st.markdown：Streamlit 提供的函數，用於在網頁上顯示 Markdown 格式的文字。
+"""
+    )
