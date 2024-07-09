@@ -116,7 +116,7 @@ if st.button("click me"):
     )
 
 
-with st.expander("class1-3"):
+with st.expander("class2-1"):
     st.markdown(
         """
 # 程式技巧筆記
@@ -361,7 +361,7 @@ with st.expander("class1-6"):
 # Streamlit 程式技巧筆記
 
 ### 引入模組
-
+```python
 import streamlit as st: 
 ```
 
@@ -370,16 +370,15 @@ import streamlit as st:
 ```python
 number = int(
     st.number_input("請輸入一個數字", step=1, max_value=9, min_value=1, value=1)
-)
 ```
 
-st.number_input：這是一個 Streamlit 提供的函數，用於在網頁上顯示一個數字輸入框。
-"請輸入一個數字"：輸入框的提示文字。
-step=1：每次增加或減少的步長。
-max_value=9：輸入的最大值。
-min_value=1：輸入的最小值。
-value=1：預設值。
-int(...)：將輸入的數字轉換為整數型別。
+- st.number_input：這是一個 Streamlit 提供的函數，用於在網頁上顯示一個數字輸入框。
+- "請輸入一個數字"：輸入框的提示文字。
+- step=1：每次增加或減少的步長。
+- max_value=9：輸入的最大值。
+- min_value=1：輸入的最小值。
+- value=1：預設值。
+- int(...)：將輸入的數字轉換為整數型別。
 
 ### 迴圈與輸出
 
