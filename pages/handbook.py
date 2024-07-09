@@ -355,7 +355,7 @@ streamlit 的 markdown 方法用於在網頁上顯示 Markdown 格式的文字�
 這行程式碼會在網頁上顯示變數 i 的值。    
 """
     )
-with st.expander("class1-6"):
+with st.expander("class2-4"):
     st.markdown(
         """
 # Streamlit 程式技巧筆記
