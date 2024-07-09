@@ -358,39 +358,137 @@ streamlit 的 markdown 方法用於在網頁上顯示 Markdown 格式的文字�
 with st.expander("class2-4"):
     st.markdown(
         """
-# Streamlit 程式技巧筆記
-
-### 引入模組
-```python
-import streamlit as st: 
-```
-
-引入 streamlit 模組，並將其名稱縮寫為 st，方便後續使用。
+### 使用 st.number_input 函數接收使用者輸入
 
 ```python
-number = int(
-    st.number_input("請輸入一個數字", step=1, max_value=9, min_value=1, value=1)
+
+   number = int(st.number_input("請輸入一個數字", step=1, max_value=9, min_value=1, value=1))
 ```
 
-- st.number_input：這是一個 Streamlit 提供的函數，用於在網頁上顯示一個數字輸入框。
-- "請輸入一個數字"：輸入框的提示文字。
-- step=1：每次增加或減少的步長。
-- max_value=9：輸入的最大值。
-- min_value=1：輸入的最小值。
-- value=1：預設值。
-- int(...)：將輸入的數字轉換為整數型別。
+- st.number_input 函數用於接收使用者的輸入，並提供一些參數來限制輸入的範圍和步長。
+- int 函數將輸入的值轉換為整數。
 
-### 迴圈與輸出
+### 使用 for 迴圈生成輸出
 
 ```python
-for i in range(1, number + 1):
-    st.markdown(str(i) * i)
+   for i in range(1, number + 1):
+       st.markdown(str(i) * i)
 ```
 
-- for i in range(1, number + 1)：使用 for 迴圈從 1 遍歷到 number。
-- range(1, number + 1)：生成從 1 到 number 的數字序列。
-- st.markdown(str(i) * i)：將數字 i 轉換為字串，並重複 i 次，然後使用 st.markdown 在網頁上顯示出來。
-- str(i) * i：將數字 i 轉換為字串並重複 i 次，例如 i=3 時，結果為 "333"。
-- st.markdown：Streamlit 提供的函數，用於在網頁上顯示 Markdown 格式的文字。
+- for 迴圈用於遍歷從 1 到 number 的範圍，並生成數字金字塔。
+- st.markdown 函數用於顯示結果。
+
+## 生成箭頭金字塔
+
+```python
+   arrow = ""
+   for i in range(1, numbers * 2, 2):
+       arrow += " " * ((numbers * 2 - i) // 2) + "*" * i + "\n"
+   for i in range(numbers):
+       arrow += " " * (numbers - 1) + "*" + "\n"
+```
+
+- 使用兩個 for 迴圈來生成箭頭金字塔的上半部分和下半部分。
+- 使用字串操作來生成每一行的內容，並將結果累加到 arrow 變數中。
+
+### 顯示箭頭金字塔
+
+```python
+   st.markdown(f'''```\n這是箭頭金字塔:\n{arrow}\n```''')
+```
+
+- 使用 st.markdown 函數來顯示箭頭金字塔，並使用三重引號來包裹多行字串。
+
+"""
+    )
+
+with st.expander("class2-5"):
+    st.markdown(
+        """
+
+# 程式技巧筆記
+
+### 使用Streamlit
+
+`streamlit` 是一個很棒的工具，可以用來建立互動式的網頁應用程式。
+
+```python
+import streamlit as st
+```
+
+### 清單
+
+- List（清單）
+- 定義List
+- 使用方括號 [] 來定義一個空的清單。
+
+- []  # 空的清單
+
+- 印出List
+- 使用 print() 函數來印出清單的內容。
+
+```python
+
+print([])  # 印出空的清單
+print([1, 2, 3])  # 印出包含數字的清單
+print(["a", "b"])  # 印出包含字母的清單
+print(["香蕉", "蘋果", "梨"])  # 印出包含水果名稱的清單
+```
+
+- List中的元素
+- 清單可以包含任何類型的元素。
+
+```python
+l = [1, 2, 3, 4, 5]  # 定義包含數字的清單
+取出List中的元素
+使用索引值來取出清單中的元素，索引值從0開始。
+l[0]  # 取出清單的第一個元素
+l[1]  # 取出清單的第二個元素
+l[2]  # 取出清單的第三個元素
+l[3]  # 取出清單的第四個元素
+l[4]  # 取出清單的第五個元素
+```
+
+- 使用迴圈遍歷List
+- 可以使用 for 迴圈來遍歷清單中的元素。
+
+### 使用索引遍歷
+
+```python
+
+l = ["a", "b", "c"]  # 定義包含字母的清單
+for index in range(len(l)):
+    print(l[index])  # 根據索引值取出元素並印出
+```
+
+### 直接遍歷元素
+
+```python
+ 
+l = ["a", "b", "c"]  # 定義包含字母的清單
+for element in l:
+    print(element)  # 直接取出元素並印出
+```
+
+修改List中的元素
+可以使用索引值來修改清單中的元素。
+
+```python
+ 
+l = ["a", "b", "c"]  # 定義包含字母的清單
+l[0] = "A"  # 修改第一個元素
+print(l[0])  # 印出修改後的第一個元素
+```
+
+### Cow語言的程式碼範例
+
+- Cow語言是一種有趣的程式語言，以下是一個簡單的Cow語言程式碼範例。
+
+```python
+ 
+L = ["moO", "MOo", "moo", "MoO", "mOo", "MOO"]
+L[0] = "moo"  # 修改第一個元素
+```
+
 """
     )

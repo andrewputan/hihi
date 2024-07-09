@@ -5,3 +5,18 @@ number = int(
 )
 for i in range(1, number + 1):
     st.markdown(str(i) * i)
+
+numbers = st.number_input("請輸入箭頭大小: ", step=1, min_value=1)
+# numbers = int(input("請輸入箭頭大小: "), step=1, min_value=1)
+arrow = ""
+for i in range(1, numbers * 2, 2):
+    # print(" " * ((number * 2 - i) // 2) + "*" * i)
+    arrow += " " * ((numbers * 2 - i) // 2) + "*" * i + "\n"
+for i in range(numbers):
+    # print(" " * (number - 1) + "*")
+    arrow += " " * (numbers - 1) + "*" + "\n"
+st.markdown(
+    f"""
+    ```\n這是箭頭金字塔:\n{arrow}\n```
+    """
+)
