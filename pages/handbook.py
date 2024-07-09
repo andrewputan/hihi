@@ -280,7 +280,7 @@ value 設定預設值。
     )
 
 
-with st.expander("class1-5"):
+with st.expander("class2-3"):
     st.markdown(
         """
 # 程式技巧筆記
