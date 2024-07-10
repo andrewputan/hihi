@@ -1,4 +1,17 @@
 import streamlit as st
+import os
+
+
+folderpath = (
+    "markdown"  # 這是相對路徑 C:\Users\Michelle\Desktop\hihi\markdown 這是絕對路徑
+)
+files = os.listdir(folderpath)  # 列出相對路徑
+# print(files)
+files_name = []
+for f in files:
+    if f.endswith(".md"):
+        print(f)
+
 
 st.title("Handbook")
 with st.expander("class1-1"):
@@ -28,13 +41,13 @@ with st.expander("class1-1"):
     age = int(input("請輸入您的年齡:"))
     print("您的年齡是:", age)
     ```
-    """
+"""
     )
-
 
 with st.expander("class1-2"):
     st.markdown(
-        """# Streamlit 筆記
+        """
+# Streamlit 筆記
 
 這段程式碼使用了 `streamlit` 模組，並將它重新命名為 `st`。
 
