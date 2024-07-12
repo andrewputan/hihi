@@ -13,6 +13,7 @@ pygame.display.set_caption("Shooting Game")
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
+GREEN = (0, 255, 0)
 
 # 設置字體
 font = pygame.font.Font(None, 36)
@@ -22,6 +23,7 @@ clock = pygame.time.Clock()
 start_time = None
 game_duration = 50  # 遊戲持續時間（秒）
 target_score = 35  # 目標分數
+health_increase_chance = 0.05  # 增加生命值的機率
 
 
 # 英雄角色
@@ -50,6 +52,9 @@ class Player(pygame.sprite.Sprite):
         self.health -= 1
         if self.health <= 0:
             self.kill()
+
+    def increase_health(self):
+        self.health += 1
 
 
 # 子彈
@@ -85,6 +90,21 @@ class Enemy(pygame.sprite.Sprite):
             self.kill()
 
 
+# 生命值增加物品
+class HealthPack(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pygame.Surface((30, 30))
+        self.image.fill(GREEN)
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+
+    def update(self):
+        self.rect.y += 3
+        if self.rect.top > 600:
+            self.kill()
+
+
 # 敵人生成
 def spawn_enemy():
     enemy = Enemy()
@@ -92,11 +112,21 @@ def spawn_enemy():
     enemies.add(enemy)
 
 
+# 生命值增加物品生成
+def spawn_health_pack():
+    x = random.randint(0, 750)
+    y = random.randint(-100, -40)
+    health_pack = HealthPack(x, y)
+    all_sprites.add(health_pack)
+    health_packs.add(health_pack)
+
+
 # 創建精靈組
 all_sprites = pygame.sprite.Group()
 players = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 enemies = pygame.sprite.Group()
+health_packs = pygame.sprite.Group()
 
 player = Player()
 all_sprites.add(player)
@@ -118,6 +148,7 @@ def reset_game():
     players.empty()
     bullets.empty()
     enemies.empty()
+    health_packs.empty()
     all_sprites.add(player)
     players.add(player)
 
@@ -130,6 +161,7 @@ def display_instructions():
         "3. Reach 35 points within 50 seconds to win.",
         "4. Each time you collide with an enemy, you lose 1 health point. Initial health is 3.",
         "5. The game ends when your health reaches 0.",
+        "6. Collect green health packs to increase your health.",
         "Press SPACE to start the game.",
     ]
     screen.fill(BLACK)
@@ -171,6 +203,8 @@ while running:
         hits = pygame.sprite.groupcollide(bullets, enemies, True, True)
         for hit in hits:
             score += 1
+            if random.random() < health_increase_chance:
+                spawn_health_pack()
 
         # 玩家碰撞檢測
         player_hits = pygame.sprite.spritecollide(player, enemies, True)
@@ -179,6 +213,11 @@ while running:
             if player.health <= 0:
                 game_active = False
                 game_over = True
+
+        # 玩家收集生命值增加物品
+        health_pack_hits = pygame.sprite.spritecollide(player, health_packs, True)
+        for hit in health_pack_hits:
+            player.increase_health()
 
         # 生成敵人
         if random.random() < 0.02:
