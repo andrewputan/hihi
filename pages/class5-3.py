@@ -23,11 +23,11 @@ msgs = [
 ]  # 對話訊息列表，初始化為一個包含提示訊息的HumanMessage物件
 for actor, message in st.session_state.history:  # 透過對話紀錄來初始化對話訊息列表
     if actor == "user":  # 如果是使用者的訊息
-        st.chat_message("user", avatar="🪄").write(message)  # 顯示使用者的對話紀錄訊息
+        st.chat_message("user", avatar="💩").write(message)  # 顯示使用者的對話紀錄訊息
         # st.chat_message("user", avatar=st.image("image/蘋果.jpg")).write(message)
         msgs.append(HumanMessage(message))  # 將使用者的訊息加入對話訊息列表
     else:
-        st.chat_message("assistant", avatar="✨").write(
+        st.chat_message("assistant", avatar="🖕🏿").write(
             message
         )  # 顯示AI回傳的對話紀錄訊息
         msgs.append(AIMessage(message))  # 將AI回傳的訊息加入對話訊息列表
